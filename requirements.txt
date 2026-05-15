@@ -1,0 +1,13 @@
+pymupdf
+pdf2image
+pytesseract
+pillow
+opencv-python-headless
+sentence-transformers
+rank-bm25
+faiss-cpu
+pydantic
+rapidfuzz
+python-dotenv
+openai
+pytest
