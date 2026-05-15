@@ -1,0 +1,11 @@
+
+Operator edit example:
+
+Original wording:
+"The tenant violated the lease and must vacate."
+
+Edited wording:
+"The records indicate possible nonpayment and late-payment issues. Further legal review is needed before determining the appropriate next step."
+
+Reusable preference:
+Avoid definitive legal conclusions unless the source evidence expressly supports them. Use cautious wording such as "records indicate", "appears", and "requires legal review".

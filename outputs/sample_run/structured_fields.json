@@ -1,0 +1,59 @@
+[
+  {
+    "doc_id": "lease_extract_messy",
+    "parties": {
+      "landlord": "Northgate Property Management LLC",
+      "tenant": "Daniel Harper"
+    },
+    "dates": {
+      "lease_start": "January 1, 2025",
+      "notice_date": "1st day of each month"
+    },
+    "amounts": {
+      "monthly_rent": "$1,850",
+      "late_fee": "$75"
+    },
+    "property_address": "44 West Pine Street, Unit 3B, Seattle, WA 98101",
+    "issues": [
+      "late payment",
+      "written notice"
+    ],
+    "uncertainty_notes": []
+  },
+  {
+    "doc_id": "notice_to_vacate",
+    "parties": {
+      "landlord": "Northgate Property Management LLC",
+      "tenant": "Daniel Harper"
+    },
+    "dates": {
+      "notice_date": "March 12, 2026"
+    },
+    "amounts": {
+      "late_fee": "$1,850",
+      "balance": "$1,925"
+    },
+    "property_address": "44 West Pine Street, Unit 3B, Seattle, WA 98101",
+    "issues": [
+      "unpaid rent",
+      "late payment",
+      "written notice"
+    ],
+    "uncertainty_notes": []
+  },
+  {
+    "doc_id": "operator_edit_example",
+    "parties": {},
+    "dates": {},
+    "amounts": {},
+    "property_address": null,
+    "issues": [
+      "unpaid rent"
+    ],
+    "uncertainty_notes": [
+      "tenant not confidently extracted",
+      "landlord not confidently extracted",
+      "property_address not confidently extracted"
+    ]
+  }
+]

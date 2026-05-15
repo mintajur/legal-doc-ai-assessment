@@ -1,0 +1,66 @@
+{
+  "guard_enabled": true,
+  "min_support_score": 0.22,
+  "total_claims_checked": 8,
+  "supported_claims": 8,
+  "removed_or_quarantined_claims": 0,
+  "removed_claims": [],
+  "claim_checks": [
+    {
+      "claim": "The records indicate possible notice-related issues involving unpaid rent, late payment, and written notice requirements. This summary is limited to the retrieved source evidence and does not make a final legal conclusion.",
+      "support_score": 0.391,
+      "supported": true,
+      "best_evidence_id": "operator_edit_example:p1:c0",
+      "reason": "Claim has enough lexical overlap with retrieved evidence."
+    },
+    {
+      "claim": "Landlord / property manager: Northgate Property Management LLC",
+      "support_score": 0.8,
+      "supported": true,
+      "best_evidence_id": "notice_to_vacate:p1:c0",
+      "reason": "Claim has enough lexical overlap with retrieved evidence."
+    },
+    {
+      "claim": "Property: 44 West Pine Street, Unit 3B, Seattle, WA 98101",
+      "support_score": 1.0,
+      "supported": true,
+      "best_evidence_id": "notice_to_vacate:p1:c0",
+      "reason": "Claim has enough lexical overlap with retrieved evidence."
+    },
+    {
+      "claim": "Notice date: March 12, 2026",
+      "support_score": 1.0,
+      "supported": true,
+      "best_evidence_id": "notice_to_vacate:p1:c0",
+      "reason": "Claim has enough lexical overlap with retrieved evidence."
+    },
+    {
+      "claim": "Lease start or lease date: January 1, 2025",
+      "support_score": 1.0,
+      "supported": true,
+      "best_evidence_id": "lease_extract_messy:p1:c0",
+      "reason": "Claim has enough lexical overlap with retrieved evidence."
+    },
+    {
+      "claim": "Main issues found: late payment, unpaid rent, written notice",
+      "support_score": 0.778,
+      "supported": true,
+      "best_evidence_id": "notice_to_vacate:p1:c0",
+      "reason": "Claim has enough lexical overlap with retrieved evidence."
+    },
+    {
+      "claim": "The available records indicate that the tenant and landlord/property manager relationship concerns the property at 44 West Pine Street, Unit 3B, Seattle, WA 98101. The documents identify rent-related obligations, including monthly rent of $1,850 and a late-fee provision of $1,850. The notice document states that a balance of $1,925 was shown for the relevant period. These points are supported by [operator_edit_example:p1:c0], [notice_to_vacate:p1:c0], [lease_extract_messy:p1:c0].",
+      "support_score": 0.545,
+      "supported": true,
+      "best_evidence_id": "structured_fields",
+      "reason": "Claim has enough lexical overlap with retrieved evidence."
+    },
+    {
+      "claim": "The evidence also indicates that notices under the lease must be provided in writing. Based only on the current documents, the safest conclusion is that the matter appears to involve possible nonpayment, late-payment issues, and written notice requirements. Further legal review is needed before determining the appropriate next step.",
+      "support_score": 0.562,
+      "supported": true,
+      "best_evidence_id": "operator_edit_example:p1:c0",
+      "reason": "Claim has enough lexical overlap with retrieved evidence."
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+
+RESIDENTIAL LEASE AGREEMENT - EXTRACT
+
+Landlord: Northgate Property Management LLC
+Tenant: Daniel Harper
+Premises: 44 West Pine Street, Unit 3B, Seattle, WA 98101
+Lease Start: January 1, 2025
+Monthly Rent: $1,850
+Due Date: 1st day of each month
+
+Section 4. Rent.
+Tenant shall pay monthly rent in the amount of $1,850 on or before the first day of each month.
+
+Section 7. Late Payment.
+If rent is not received by the fifth day of the month, a late fee of $75 may be charged.
+
+Section 11. Notices.
+Any notice required under this lease must be provided in writing to the tenant at the premises or by another method permitted by applicable law.
+
+Note: Some scan artifacts were present in the original file: "Rent due 1$t day", "late fee $7S". These were normalized after OCR review.

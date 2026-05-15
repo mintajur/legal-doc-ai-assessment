@@ -1,0 +1,16 @@
+{
+  "cautious_legal_language": true,
+  "preferred_phrases": [
+    "records indicate",
+    "appears",
+    "requires legal review",
+    "possible nonpayment"
+  ],
+  "banned_phrases": [
+    "must vacate",
+    "violated the lease"
+  ],
+  "learned_notes": [
+    "Operator softened definitive legal conclusions into cautious source-grounded language."
+  ]
+}

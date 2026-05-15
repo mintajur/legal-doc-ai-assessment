@@ -1,0 +1,521 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Legal Document AI Assessment Report</title>
+<style>
+    body {
+        margin: 0;
+        background: #f4f7fb;
+        color: #172033;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .page {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 34px 22px 60px;
+    }
+
+    .hero {
+        background: linear-gradient(135deg, #101828, #1d4ed8);
+        color: white;
+        padding: 34px;
+        border-radius: 24px;
+        box-shadow: 0 20px 50px rgba(16, 24, 40, 0.18);
+        margin-bottom: 28px;
+    }
+
+    .hero h1 {
+        margin: 0 0 10px;
+        font-size: 34px;
+        letter-spacing: -0.7px;
+    }
+
+    .hero p {
+        margin: 0;
+        max-width: 860px;
+        color: #dbeafe;
+        font-size: 16px;
+        line-height: 1.6;
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+        margin-bottom: 28px;
+    }
+
+    .metric-card {
+        background: white;
+        padding: 22px;
+        border-radius: 18px;
+        box-shadow: 0 10px 30px rgba(16, 24, 40, 0.08);
+        border: 1px solid #e7eef8;
+    }
+
+    .metric-label {
+        color: #667085;
+        font-size: 13px;
+        margin-bottom: 8px;
+    }
+
+    .metric-value {
+        font-size: 28px;
+        font-weight: 800;
+        color: #101828;
+    }
+
+    .section {
+        background: white;
+        padding: 26px;
+        border-radius: 22px;
+        box-shadow: 0 10px 30px rgba(16, 24, 40, 0.07);
+        border: 1px solid #e7eef8;
+        margin-bottom: 24px;
+    }
+
+    .section h2 {
+        margin: 0 0 16px;
+        font-size: 23px;
+        color: #101828;
+    }
+
+    .pipeline {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 12px;
+    }
+
+    .stage {
+        background: #f8fbff;
+        border: 1px solid #dbeafe;
+        border-radius: 16px;
+        padding: 16px;
+        min-height: 120px;
+    }
+
+    .stage-number {
+        width: 28px;
+        height: 28px;
+        border-radius: 999px;
+        background: #2563eb;
+        color: white;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        margin-bottom: 10px;
+    }
+
+    .stage h3 {
+        margin: 0 0 8px;
+        font-size: 15px;
+    }
+
+    .stage p {
+        margin: 0;
+        color: #667085;
+        font-size: 13px;
+        line-height: 1.45;
+    }
+
+    .badge {
+        display: inline-block;
+        padding: 7px 11px;
+        border-radius: 999px;
+        font-size: 13px;
+        font-weight: 700;
+    }
+
+    .good {
+        background: #dcfce7;
+        color: #166534;
+    }
+
+    .bad {
+        background: #fee2e2;
+        color: #991b1b;
+    }
+
+    .neutral {
+        background: #e5e7eb;
+        color: #374151;
+    }
+
+    .evidence-card, .structured-card, .removed-claim {
+        background: #f8fbff;
+        border: 1px solid #dbeafe;
+        border-radius: 16px;
+        padding: 18px;
+        margin-bottom: 14px;
+    }
+
+    .evidence-top {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        flex-wrap: wrap;
+        margin-bottom: 10px;
+    }
+
+    .rank {
+        font-weight: 800;
+        color: #1d4ed8;
+    }
+
+    .chip {
+        background: #e0f2fe;
+        color: #075985;
+        padding: 5px 9px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 700;
+    }
+
+    .score {
+        color: #667085;
+        font-size: 13px;
+    }
+
+    .chunk-id {
+        font-family: Consolas, monospace;
+        font-size: 13px;
+        color: #344054;
+        margin-bottom: 6px;
+    }
+
+    .source {
+        color: #667085;
+        font-size: 13px;
+        margin-bottom: 8px;
+    }
+
+    .evidence-card p {
+        margin: 0;
+        line-height: 1.6;
+        color: #344054;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+    }
+
+    th, td {
+        border-bottom: 1px solid #e5e7eb;
+        padding: 12px;
+        text-align: left;
+        vertical-align: top;
+    }
+
+    th {
+        width: 180px;
+        color: #475467;
+        background: #f9fafb;
+    }
+
+    pre {
+        white-space: pre-wrap;
+        margin: 0;
+        font-family: Consolas, monospace;
+        font-size: 13px;
+    }
+
+    .draft-box {
+        background: #0b1220;
+        color: #e5e7eb;
+        padding: 22px;
+        border-radius: 16px;
+        overflow-x: auto;
+        white-space: pre-wrap;
+        line-height: 1.6;
+        font-family: Consolas, monospace;
+        font-size: 13px;
+        max-height: 560px;
+        overflow-y: auto;
+    }
+
+    .muted {
+        color: #667085;
+    }
+
+    .two-col {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+    }
+
+    .footer {
+        text-align: center;
+        color: #667085;
+        font-size: 13px;
+        margin-top: 28px;
+    }
+
+    @media (max-width: 950px) {
+        .grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        .pipeline {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        .two-col {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .grid {
+            grid-template-columns: 1fr;
+        }
+        .pipeline {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+</head>
+<body>
+<div class="page">
+
+    <div class="hero">
+        <h1>Legal Document AI Assessment Report</h1>
+        <p>
+            A complete visual summary of the document-processing, grounded retrieval,
+            hallucination-removal, draft-generation, edit-learning, and evaluation workflow.
+            This report is generated directly from the pipeline outputs.
+        </p>
+    </div>
+
+    <div class="grid">
+        <div class="metric-card">
+            <div class="metric-label">Retrieval Recall@K</div>
+            <div class="metric-value">100.0%</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-label">Grounding Coverage</div>
+            <div class="metric-value">100.0%</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-label">Unsupported Claim Control</div>
+            <div class="metric-value"><span class="badge good">Passed</span></div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-label">Edit Learning Applied</div>
+            <div class="metric-value"><span class="badge good">Passed</span></div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Pipeline Overview</h2>
+        <div class="pipeline">
+            <div class="stage">
+                <div class="stage-number">1</div>
+                <h3>Document Processing</h3>
+                <p>Extracts embedded text, runs OCR fallback, normalizes text, and captures confidence warnings.</p>
+            </div>
+            <div class="stage">
+                <div class="stage-number">2</div>
+                <h3>Structured Extraction</h3>
+                <p>Pulls parties, dates, amounts, property address, issues, and uncertainty notes.</p>
+            </div>
+            <div class="stage">
+                <div class="stage-number">3</div>
+                <h3>Hybrid Retrieval</h3>
+                <p>Combines BM25 keyword search with FAISS semantic search to retrieve grounded evidence.</p>
+            </div>
+            <div class="stage">
+                <div class="stage-number">4</div>
+                <h3>Draft Generation</h3>
+                <p>Creates a first-pass notice-related case fact summary using only retrieved evidence.</p>
+            </div>
+            <div class="stage">
+                <div class="stage-number">5</div>
+                <h3>Hallucination Guard</h3>
+                <p>Checks claims against evidence and removes unsupported or high-risk legal claims.</p>
+            </div>
+            <div class="stage">
+                <div class="stage-number">6</div>
+                <h3>Edit Learning</h3>
+                <p>Learns cautious drafting preferences from operator edits and applies them to future drafts.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Hallucination Removal Summary</h2>
+        <div class="grid">
+            <div class="metric-card">
+                <div class="metric-label">Claims Checked Before Edit Learning</div>
+                <div class="metric-value">8</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-label">Claims Removed Before Edit Learning</div>
+                <div class="metric-value">0</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-label">Claims Checked After Edit Learning</div>
+                <div class="metric-value">9</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-label">Claims Removed After Edit Learning</div>
+                <div class="metric-value">0</div>
+            </div>
+        </div>
+        <h3>Removed or Quarantined Claims</h3>
+        <p class="muted">No unsupported claims were removed in the first guarded draft.</p>
+    </div>
+
+    <div class="section">
+        <h2>Structured Fields Extracted</h2>
+        
+        <div class="structured-card">
+            <h3>lease_extract_messy</h3>
+            <table>
+                <tr><th>Property</th><td>44 West Pine Street, Unit 3B, Seattle, WA 98101</td></tr>
+                <tr><th>Parties</th><td><pre>{
+  &quot;landlord&quot;: &quot;Northgate Property Management LLC&quot;,
+  &quot;tenant&quot;: &quot;Daniel Harper&quot;
+}</pre></td></tr>
+                <tr><th>Dates</th><td><pre>{
+  &quot;lease_start&quot;: &quot;January 1, 2025&quot;,
+  &quot;notice_date&quot;: &quot;1st day of each month&quot;
+}</pre></td></tr>
+                <tr><th>Amounts</th><td><pre>{
+  &quot;monthly_rent&quot;: &quot;$1,850&quot;,
+  &quot;late_fee&quot;: &quot;$75&quot;
+}</pre></td></tr>
+                <tr><th>Issues</th><td>late payment, written notice</td></tr>
+            </table>
+        </div>
+        
+        <div class="structured-card">
+            <h3>notice_to_vacate</h3>
+            <table>
+                <tr><th>Property</th><td>44 West Pine Street, Unit 3B, Seattle, WA 98101</td></tr>
+                <tr><th>Parties</th><td><pre>{
+  &quot;landlord&quot;: &quot;Northgate Property Management LLC&quot;,
+  &quot;tenant&quot;: &quot;Daniel Harper&quot;
+}</pre></td></tr>
+                <tr><th>Dates</th><td><pre>{
+  &quot;notice_date&quot;: &quot;March 12, 2026&quot;
+}</pre></td></tr>
+                <tr><th>Amounts</th><td><pre>{
+  &quot;late_fee&quot;: &quot;$1,850&quot;,
+  &quot;balance&quot;: &quot;$1,925&quot;
+}</pre></td></tr>
+                <tr><th>Issues</th><td>unpaid rent, late payment, written notice</td></tr>
+            </table>
+        </div>
+        
+        <div class="structured-card">
+            <h3>operator_edit_example</h3>
+            <table>
+                <tr><th>Property</th><td>None</td></tr>
+                <tr><th>Parties</th><td><pre>{}</pre></td></tr>
+                <tr><th>Dates</th><td><pre>{}</pre></td></tr>
+                <tr><th>Amounts</th><td><pre>{}</pre></td></tr>
+                <tr><th>Issues</th><td>unpaid rent</td></tr>
+            </table>
+        </div>
+        
+    </div>
+
+    <div class="section">
+        <h2>Retrieved Evidence</h2>
+        
+        <div class="evidence-card">
+            <div class="evidence-top">
+                <span class="rank">Rank 1</span>
+                <span class="chip">hybrid</span>
+                <span class="score">Score: 1.670</span>
+            </div>
+            <div class="chunk-id">operator_edit_example:p1:c0</div>
+            <div class="source">Source: /content/legal_doc_ai_assessment/data/sample_docs/operator_edit_example.txt | Page: 1</div>
+            <p>Operator edit example: Original wording: &quot;The tenant violated the lease and must vacate.&quot; Edited wording: &quot;The records indicate possible nonpayment and late-payment issues. Further legal review is needed before determining the appropriate next step.&quot; Reusable preference: Avoid definitive legal conclusions unless the source evidence expressly supports them. Use cautious wording such as &quot;records indicate&quot;, &quot;appears&quot;, a...</p>
+        </div>
+        
+        <div class="evidence-card">
+            <div class="evidence-top">
+                <span class="rank">Rank 2</span>
+                <span class="chip">hybrid</span>
+                <span class="score">Score: 1.653</span>
+            </div>
+            <div class="chunk-id">notice_to_vacate:p1:c0</div>
+            <div class="source">Source: /content/legal_doc_ai_assessment/data/sample_docs/notice_to_vacate.txt | Page: 1</div>
+            <p>NOTICE TO VACATE Date: March 12, 2026 From: Northgate Property Management LLC To: Daniel Harper Property: 44 West Pine Street, Unit 3B, Seattle, WA 98101 Dear Mr. Harper, This letter serves as a written notice regarding unpaid rent and repeated late payment issues under the residential lease dated January 1, 2025. According to our records, rent for February 2026 in the amount of $1,850 remains unpaid. A late fee of $...</p>
+        </div>
+        
+        <div class="evidence-card">
+            <div class="evidence-top">
+                <span class="rank">Rank 3</span>
+                <span class="chip">hybrid</span>
+                <span class="score">Score: 1.285</span>
+            </div>
+            <div class="chunk-id">lease_extract_messy:p1:c0</div>
+            <div class="source">Source: /content/legal_doc_ai_assessment/data/sample_docs/lease_extract_messy.txt | Page: 1</div>
+            <p>RESIDENTIAL LEASE AGREEMENT - EXTRACT Landlord: Northgate Property Management LLC Tenant: Daniel Harper Premises: 44 West Pine Street, Unit 3B, Seattle, WA 98101 Lease Start: January 1, 2025 Monthly Rent: $1,850 Due Date: 1st day of each month Section 4. Rent. Tenant shall pay monthly rent in the amount of $1,850 on or before the first day of each month. Section 7. Late Payment. If rent is not received by the fifth d...</p>
+        </div>
+        
+    </div>
+
+    <div class="section">
+        <h2>Final Draft After Hallucination Removal and Edit Learning</h2>
+        <div class="draft-box"># Notice-Related Case Fact Summary
+
+## Drafting task
+
+Create a notice-related case fact summary.
+
+## Short answer
+
+The records indicate possible notice-related issues involving unpaid rent, late payment, and written notice requirements. This summary is limited to the retrieved source evidence and does not make a final legal conclusion.
+
+## Key extracted facts
+
+- Tenant: Daniel Harper
+- Landlord / property manager: Northgate Property Management LLC
+- Property: 44 West Pine Street, Unit 3B, Seattle, WA 98101
+- Notice date: March 12, 2026
+- Lease start or lease date: January 1, 2025
+- Monthly rent: $1,850
+- Late fee: $1,850
+- Stated balance: $1,925
+- Main issues found: late payment, unpaid rent, written notice
+
+## Source-grounded summary
+
+The available records indicate that the tenant and landlord/property manager relationship concerns the property at 44 West Pine Street, Unit 3B, Seattle, WA 98101. The documents identify rent-related obligations, including monthly rent of $1,850 and a late-fee provision of $1,850. The notice document states that a balance of $1,925 was shown for the relevant period. These points are supported by [operator_edit_example:p1:c0], [notice_to_vacate:p1:c0], [lease_extract_messy:p1:c0].
+
+The evidence also indicates that notices under the lease must be provided in writing. Based only on the current documents, the safest conclusion is that the matter appears to involve possible nonpayment, late-payment issues, and written notice requirements. Further legal review is needed before determining the appropriate next step.
+
+## Unsupported or unclear points
+
+- Whether the notice fully complies with local law is not determined from these documents.
+- Whether payment was later made is not shown in the retrieved evidence.
+- Whether the tenant received the notice is not confirmed by the retrieved evidence.
+- No final legal conclusion is made.
+
+## Evidence used
+
+- [operator_edit_example:p1:c0] /content/legal_doc_ai_assessment/data/sample_docs/operator_edit_example.txt, page 1: Operator edit example:  Original wording: &quot;The records indicate possible nonpayment and late-payment issues. Further legal review is needed before determining the appropriate next step.&quot;  Edited wording: &quot;The records indicate possible nonpayment and late-payment issues. Further legal review is needed before determining the appropriate next step.&quot;  Reusable preference: Avoid definitive legal conclusions unless the source evidence expressly sup...
+- [notice_to_vacate:p1:c0] /content/legal_doc_ai_assessment/data/sample_docs/notice_to_vacate.txt, page 1: NOTICE TO VACATE  Date: March 12, 2026  From: Northgate Property Management LLC To: Daniel Harper Property: 44 West Pine Street, Unit 3B, Seattle, WA 98101  Dear Mr. Harper,  This letter serves as a written notice regarding unpaid rent and repeated late payment issues under the residential lease dated January 1, 2025.  According to our records, ren...
+- [lease_extract_messy:p1:c0] /content/legal_doc_ai_assessment/data/sample_docs/lease_extract_messy.txt, page 1: RESIDENTIAL LEASE AGREEMENT - EXTRACT  Landlord: Northgate Property Management LLC Tenant: Daniel Harper Premises: 44 West Pine Street, Unit 3B, Seattle, WA 98101 Lease Start: January 1, 2025 Monthly Rent: $1,850 Due Date: 1st day of each month  Section 4. Rent. Tenant shall pay monthly rent in the amount of $1,850 on or before the first day of eac...
+
+## Operator-edit preferences applied
+
+- Used cautious legal wording where the source evidence does not support a definitive conclusion.
+- Preserved grounding by keeping evidence references attached to key claims.
+</div>
+    </div>
+
+    <div class="footer">
+        Generated from pipeline artifacts in outputs/sample_run.
+    </div>
+
+</div>
+</body>
+</html>
